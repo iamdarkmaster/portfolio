@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/15477286fb.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>   
-   
+    <script src="https://kit.fontawesome.com/15477286fb.js" crossorigin="anonymous"></script>   
 
   </head>
 
@@ -311,31 +309,29 @@
                   </div>
                 </div>
               </form>
-              <p id="statusMessage"></p>
+                  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+              publicKey: "Aub7kkxxSAxYx_UgG",
+            });
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('ContactForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // these IDs from the previous steps
+                emailjs.sendForm('contact_service', 'contact_form', this)
+                    .then(() => {
+                        console.log('SUCCESS!');
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
             </div>
-            <script>
-              // Initialize EmailJS with your user ID
-              (function() {
-                  emailjs.init('0LAYXTx5x9ospAE2H');  // Replace with your actual EmailJS user ID
-              })();
-          
-              // Handle form submission
-              document.getElementById('contactForm').addEventListener('submit', function(event) {
-                  event.preventDefault(); // Prevent the page from reloading on form submit
-                  
-                  var form = event.target;
-                  
-                  // Send the form data via EmailJS
-                  emailjs.sendForm('service_1khrxp8', 'template_vn33ovh', form)
-                      .then(function(response) {
-                          document.getElementById('statusMessage').textContent = 'Message sent successfully!';
-                          form.reset(); // Reset the form after submission
-                      }, function(error) {
-                          document.getElementById('statusMessage').textContent = 'Oops! Something went wrong. Please try again.';
-                      });
-              });
-          </script>
-          
             <div class="contact-info">
               <div class="contact-info-item">
                 <h3>Email</h3>
